@@ -1,8 +1,8 @@
 # This is a basic workflow to help you get started with Actions
-# Give a name to the workflow
+# Give a name to the workflow (Name of the workflow)
 name: Test-Manual Workflow
 
-# When the workflow should trigger
+# When the workflow should trigger. Trigger event (push, pull request, schedule, manual)
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
