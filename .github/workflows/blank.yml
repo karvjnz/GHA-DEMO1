@@ -29,7 +29,7 @@ jobs:
 
       # Runs a single command using the runners shell. Name of the step and what this step should do
       - name: Run a one-line script
-        run: Workflow Executed successfully!!!
+        run: echo "Workflow Executed successfully!!!"
 
       # # Runs a set of commands using the runners shell
       # - name: Run a multi-line script
