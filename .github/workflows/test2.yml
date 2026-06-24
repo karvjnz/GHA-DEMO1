@@ -1,0 +1,13 @@
+# .github/workflows/test2.yml
+name: On-Workflow-Dispatch
+on: push  # on Push Event
+jobs:
+  # This workflow contains a single job called "build". "build" is the name of the job
+  build:
+    # The type of runner that the job will run on. Where the job should run. This is called defining the runner
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell. Name of the step and what this step should do
+      - name: Build Steps
+        run: echo "Running Steps from Build Job"
