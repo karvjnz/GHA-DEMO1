@@ -1,6 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 # Give a name to the workflow (Name of the workflow)
-name: Test-Manual Workflow
+
+# .github/workflows/blank.yml
+name: On-Workflow-Dispatch
 
 # When the workflow should trigger. Trigger event (push, pull request, schedule, manual)
 on:
