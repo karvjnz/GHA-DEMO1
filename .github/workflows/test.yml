@@ -22,12 +22,14 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    needs: job_build   # In this step, we use "need", to say run the test job only when the build job is completed
     steps:
       - name: Testing Phase
         run: echo "Running the test cases"
     
   deploy:
     runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Deploy the Application
         run: echo "Deploying the App"
