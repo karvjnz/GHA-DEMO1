@@ -1,0 +1,33 @@
+# .github/workflows/test.yml
+name: On-Workflow-Dispatch-2-Build + Test
+
+# When the workflow should trigger. Trigger event (push, pull request, schedule, manual)
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+ 
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel. In a workflow we can have multiple jobs
+jobs:
+  # This workflow contains a single job called "build". job_name-1 is the name of the job
+  job_build:
+    # The type of runner that the job will run on. Where the job should run. This is called defining the runner
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a single command using the runners shell. Name of the step and what this step should do
+      - name: Run Build Steps from job_build
+        run: echo "job_build steps executed"
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testing Phase
+        run: echo "Running the test cases"
+    
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the Application
+        run: echo "Deploying the App"
