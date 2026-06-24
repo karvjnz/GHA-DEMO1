@@ -1,5 +1,5 @@
 # .github/workflows/test2.yml
-name: On-Workflow-Dispatch
+name: Push_Event_Workflow
 on: push  # on Push Event
 jobs:
   # This workflow contains a single job called "build". "build" is the name of the job
