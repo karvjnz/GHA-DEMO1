@@ -1,0 +1,21 @@
+# .github/workflows/test3.yml
+name: Push_Event_Workflow_Multi_Branch
+on: 
+  push:  # on Push Event
+    branches:
+      - main         # trigger on push even on main branch
+      - develop      # trigger on push even on main develop branch
+      - 'release/**'  # this means any branch witth prefix
+  pull_request:
+    branches:
+      - main      # this means this workflow wil get executed when "Pull Request" raised against a main branch, 
+jobs:
+  # This workflow contains a single job called "build". "build" is the name of the job
+  build:
+    # The type of runner that the job will run on. Where the job should run. This is called defining the runner
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell. Name of the step and what this step should do
+      - name: Build Steps
+        run: echo "Running Steps from Build Job"
