@@ -5,13 +5,24 @@ on:
     
 jobs:
   
-  action-demo:                  # "acion-demo" is the name of the job. This workflow contains a single job called "acion-demo". 
-    runs-on: ubuntu-latest      # The type of runner that the job will run on. Where the job should run. This is called defining the runner
-    steps:                      # Steps represent a sequence of tasks that will be executed as part of the job
-      - name: checkout the code    # Runs a single command using the runners shell. Name of the step and what this step should do
-        uses: actions/checkout@v4
+  action-demo:                     # "acion-demo" is the name of the job. This workflow contains a single job called "acion-demo". 
+    runs-on: ubuntu-latest         # The type of runner that the job will run on. Where the job should run. This is called defining the runner
+    steps:                         # Steps represent a sequence of tasks that will be executed as part of the job
+      - name: checkout the code    # just a human-readable label shown in the GitHub Actions UI. Name of the step and what this step should do
+        uses: actions/checkout@v4  # tells GitHub to run a prebuilt action.
 
       - name: Print index.html file    # Runs a single command using the runners shell. Name of the step and what this step should do
         run: cat index.html
       
-        
+
+
+# What is actions/checkout@v4?   
+# actions/checkout is an official GitHub Action provided by GitHub.
+# It downloads (checks out) your repository code into the runner machine. 
+# When the workflow starts, the runner machine is basically an empty temporary VM. After this step runs=> uses: actions/checkout@v4
+# your repository contents become available inside the runner filesystem.
+# Without checkout: your repository files are NOT present, index.html does not exist, your source code is unavailable
+
+# Why is it needed in YOUR example? => we have give a step to print the index.html file using CAT command
+
+# Reference: https://github.com/actions/checkout
