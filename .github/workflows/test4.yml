@@ -1,0 +1,12 @@
+# .github/workflows/test3.yml
+name: Print_Variable_Name
+on: 
+  push:  # on Push Event or Code Commit
+    
+jobs:
+  
+  build:                    # This workflow contains a single job called "build". "build" is the name of the job
+    runs-on: ubuntu-latest  # The type of runner that the job will run on. Where the job should run. This is called defining the runner
+    steps:                  # Steps represent a sequence of tasks that will be executed as part of the job
+      - name: Build Steps    # Runs a single command using the runners shell. Name of the step and what this step should do
+        run: echo "Printing the variables, ${{vars.MY_GITHUB}}"
