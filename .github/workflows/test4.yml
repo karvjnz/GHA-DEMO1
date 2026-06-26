@@ -5,8 +5,21 @@ on:
     
 jobs:
   
-  build:                    # This workflow contains a single job called "build". "build" is the name of the job
-    runs-on: ubuntu-latest  # The type of runner that the job will run on. Where the job should run. This is called defining the runner
-    steps:                  # Steps represent a sequence of tasks that will be executed as part of the job
-      - name: Build Steps    # Runs a single command using the runners shell. Name of the step and what this step should do
-        run: echo "Printing the variables, ${{vars.MY_GITHUB}}"
+  build:                        # This workflow contains a single job called "build". "build" is the name of the job
+    runs-on: ubuntu-latest      # The type of runner that the job will run on. Where the job should run. This is called defining the runner
+    steps:                      # Steps represent a sequence of tasks that will be executed as part of the job
+      - name: Print Variable    # Runs a single command using the runners shell. Name of the step and what this step should do
+        run: echo "Printing the Variable, ${{vars.MY_GITHUB}}"
+        
+      - name: Print Secret      # Runs a single command using the runners shell. Name of the step and what this step should do
+        run: echo "Printing the Secret, ${{secrets.DOCKER_PASSWORD}}"
+
+
+# The | allows multiline shell commands.
+#  steps:
+      #- name: Build Steps
+       # run: |
+        #  echo "Printing the variable: ${{ vars.MY_GITHUB }}"
+         # echo "Printing the secret: ${{ secrets.DOCKER_PASSWORD }}"
+
+        
