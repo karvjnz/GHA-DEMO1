@@ -16,7 +16,7 @@ jobs:
 
       - name: Code Statice Code to S3
         run: |
-          aws s3 sync ./ s3://GHA-DEMO1/ \
+          aws s3 sync ./ s3://githubactions-bucket-demo/ \
           --exclude "*" \
           --include "index2.html"
           
