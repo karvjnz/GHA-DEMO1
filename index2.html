@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KZENO – Business Innovation & Digital Transformation | Auckland, NZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --deep: #060b18;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --teal: #00b4d8;
+    --teal-dim: #0077a8;
+    --cream: #f5f0e8;
+    --muted: #8a8fa8;
+    --glass: rgba(255,255,255,0.04);
+    --border: rgba(201,168,76,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background: var(--deep);
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor { position:fixed; width:10px; height:10px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:transform 0.1s; }
+  .cursor-ring { position:fixed; width:38px; height:38px; border:1.5px solid var(--gold); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all 0.18s ease; opacity:0.6; }
+
+  /* NAV */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 70px;
+    background: rgba(6,11,24,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .logo {
+    font-family: 'Arial', serif;
+    font-size: 2rem; font-weight: 700;
+    letter-spacing: 0.15em;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .logo span { font-size: 0.6rem; display:block; letter-spacing:0.4em; font-family:'Arial',sans-serif; font-weight:300; -webkit-text-fill-color: var(--muted); margin-top:-4px; }
+  .nav-links { display:flex; gap:2.5rem; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; transition:color 0.3s; position:relative; }
+  .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--gold); transition:width 0.3s; }
+  .nav-links a:hover { color:var(--gold); }
+  .nav-links a:hover::after { width:100%; }
+  .nav-cta { background: linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--navy)!important; padding:0.5rem 1.4rem; border-radius:2px; font-weight:600!important; }
+  .nav-cta::after { display:none!important; }
+
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:none; background:none; border:none; padding:4px; }
+  .hamburger span { display:block; width:24px; height:1.5px; background:var(--cream); transition:all 0.3s; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: 0 8%;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position:absolute; inset:0; z-index:0;
+    background: radial-gradient(ellipse 80% 80% at 70% 50%, rgba(0,180,216,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 20% 80%, rgba(201,168,76,0.07) 0%, transparent 50%),
+                var(--deep);
+  }
+  .hero-grid {
+    position:absolute; inset:0; z-index:0;
+    background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+  }
+  .hero-orb {
+    position:absolute; right: 5%; top:50%; transform:translateY(-50%);
+    width: 520px; height: 520px; border-radius:50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.12) 0%, rgba(201,168,76,0.06) 40%, transparent 70%);
+    animation: pulse 5s ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes pulse { 0%,100%{transform:translateY(-50%) scale(1);opacity:0.8} 50%{transform:translateY(-50%) scale(1.06);opacity:1} }
+
+  .hero-content { position:relative; z-index:1; max-width:700px; }
+  .hero-tag {
+    display:inline-flex; align-items:center; gap:0.6rem;
+    background:rgba(201,168,76,0.1); border:1px solid var(--border);
+    padding:0.4rem 1rem; border-radius:2px; margin-bottom:2rem;
+    font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold);
+  }
+  .hero-tag::before { content:''; width:6px; height:6px; background:var(--gold); border-radius:50%; animation:blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  h1 {
+    font-family:'Cormorant Garamond',serif;
+    font-size: clamp(3rem,7vw,6rem);
+    font-weight:300; line-height:1.05;
+    margin-bottom:1.5rem;
+  }
+  h1 em { font-style:normal; color:var(--gold); }
+  .hero-sub {
+    font-size:1.05rem; color:var(--muted); line-height:1.8;
+    max-width:540px; margin-bottom:2.5rem;
+  }
+  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn-primary {
+    background:linear-gradient(135deg,var(--gold),var(--gold-light));
+    color:var(--navy); padding:0.85rem 2.2rem;
+    border:none; border-radius:2px; font-weight:600;
+    font-size:0.9rem; letter-spacing:0.08em; cursor:none;
+    transition:all 0.3s; text-decoration:none; display:inline-block;
+  }
+  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(201,168,76,0.3); }
+  .btn-outline {
+    background:transparent; color:var(--cream);
+    padding:0.85rem 2.2rem; border:1px solid rgba(255,255,255,0.2);
+    border-radius:2px; font-size:0.9rem; letter-spacing:0.08em;
+    cursor:none; transition:all 0.3s; text-decoration:none; display:inline-block;
+  }
+  .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+
+  .hero-stats {
+    position:absolute; bottom:5%; right:8%; z-index:1;
+    display:flex; gap:3rem;
+  }
+  .stat { text-align:center; }
+  .stat-num { font-family:'Arial',serif; font-size:2.4rem; font-weight:600; color:var(--gold); }
+  .stat-label { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-top:0.2rem; }
+
+  .scroll-hint {
+    position:absolute; bottom:3%; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+    color:var(--muted); font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; z-index:1;
+  }
+  .scroll-line { width:1px; height:50px; background:linear-gradient(var(--gold),transparent); animation:scrollDown 2s infinite; }
+  @keyframes scrollDown { 0%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1} 100%{opacity:0;transform:scaleY(1);transform-origin:top} }
+
+  /* SECTIONS COMMON */
+  section { padding: 8rem 8%; position:relative; }
+  section:nth-child(even) { background: rgba(255,255,255,0.015); }
+
+  .section-label {
+    font-size:0.72rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:1rem;
+    display:flex; align-items:center; gap:1rem;
+  }
+  .section-label::before { content:''; flex:0 0 30px; height:1px; background:var(--gold); }
+
+  h2 {
+    font-family:'Arial',serif;
+    font-size:clamp(2rem,4vw,3.2rem); font-weight:300;
+    line-height:1.2; margin-bottom:1.5rem;
+  }
+  h2 strong { font-weight:700; }
+
+  .section-intro { color:var(--muted); font-size:1rem; line-height:1.8; max-width:620px; }
+
+  /* ABOUT */
+  #about .about-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; margin-top:4rem;
+  }
+  .about-text p { color:var(--muted); line-height:1.9; margin-bottom:1.2rem; font-size:0.97rem; }
+  .about-badges { display:flex; flex-wrap:wrap; gap:0.7rem; margin-top:2rem; }
+  .badge {
+    border:1px solid var(--border); padding:0.35rem 0.9rem;
+    border-radius:2px; font-size:0.72rem; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--gold);
+    background:rgba(201,168,76,0.05);
+  }
+  .about-visual {
+    position:relative; height:420px;
+  }
+  .about-card {
+    position:absolute; background:var(--glass);
+    border:1px solid var(--border); backdrop-filter:blur(10px);
+    padding:1.5rem; border-radius:4px;
+  }
+  .about-card:nth-child(1) { top:0; left:0; right:0; }
+  .about-card:nth-child(2) { bottom:0; left:10%; right:10%; }
+  .card-metric { font-family:'Arial',serif; font-size:3rem; font-weight:600; color:var(--gold); }
+  .card-desc { color:var(--muted); font-size:0.85rem; margin-top:0.3rem; }
+  .cert-row { display:flex; gap:0.5rem; flex-wrap:wrap; margin-top:1rem; }
+  .cert-chip { background:rgba(0,180,216,0.1); border:1px solid rgba(0,180,216,0.3); padding:0.2rem 0.7rem; border-radius:20px; font-size:0.72rem; color:var(--teal); }
+
+  /* SERVICES */
+  #services .services-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:4rem; flex-wrap:wrap; gap:2rem; }
+  .services-tabs { display:flex; gap:0.5rem; background:var(--glass); border:1px solid var(--border); border-radius:3px; padding:4px; }
+  .tab-btn {
+    padding:0.4rem 1.1rem; border:none; background:none;
+    color:var(--muted); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase;
+    cursor:none; border-radius:2px; transition:all 0.3s;
+  }
+  .tab-btn.active { background:var(--gold); color:var(--navy); font-weight:600; }
+
+  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5px; background:var(--border); border:1px solid var(--border); }
+  .service-card {
+    background:var(--deep); padding:2.5rem;
+    transition:all 0.4s; position:relative; overflow:hidden;
+    cursor:none;
+  }
+  .service-card::before {
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(135deg, rgba(201,168,76,0.05), transparent);
+    opacity:0; transition:opacity 0.4s;
+  }
+  .service-card:hover { background:rgba(201,168,76,0.04); }
+  .service-card:hover::before { opacity:1; }
+  .service-card:hover .service-icon { transform:scale(1.1) rotate(5deg); }
+
+  .service-icon { font-size:2.2rem; margin-bottom:1.5rem; display:block; transition:transform 0.4s; }
+  .service-card h3 { font-family:'Arial',serif; font-size:1.4rem; font-weight:600; margin-bottom:0.8rem; }
+  .service-card p { color:var(--muted); font-size:0.85rem; line-height:1.8; }
+  .service-tag { display:inline-block; margin-top:1.2rem; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); }
+
+  .service-detail { display:none; }
+  .service-detail.active { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5px; background:var(--border); border:1px solid var(--border); }
+
+  /* PROCESS */
+  #process { background: var(--deep); }
+  .process-steps { display:flex; gap:0; margin-top:4rem; position:relative; }
+  .process-steps::before { content:''; position:absolute; top:40px; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--border),var(--gold),var(--border),transparent); }
+  .process-step { flex:1; padding:0 1.5rem; position:relative; text-align:center; }
+  .step-dot {
+    width:80px; height:80px; border-radius:50%;
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 1.5rem; font-size:1.8rem;
+    background:var(--deep); position:relative; z-index:1;
+    transition:all 0.4s;
+  }
+  .process-step:hover .step-dot { border-color:var(--gold); background:rgba(201,168,76,0.1); transform:scale(1.1); }
+  .step-num { position:absolute; top:-4px; right:-4px; width:20px; height:20px; background:var(--gold); border-radius:50%; font-size:0.65rem; font-family:'JetBrains Mono',monospace; color:var(--navy); display:flex; align-items:center; justify-content:center; font-weight:700; }
+  .process-step h3 { font-size:0.9rem; font-weight:600; letter-spacing:0.05em; margin-bottom:0.5rem; }
+  .process-step p { font-size:0.8rem; color:var(--muted); line-height:1.7; }
+
+  /* TRAINING/MARKET */
+  #trading {
+    background: linear-gradient(180deg, var(--deep) 0%, rgba(0,20,40,0.9) 100%);
+    border-top:1px solid var(--border);
+  }
+  .trading-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-top:4rem; }
+  .trading-visual {
+    background:var(--glass); border:1px solid var(--border);
+    border-radius:4px; padding:2rem; position:relative; overflow:hidden;
+  }
+  .chart-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; }
+  .chart-title { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--teal); }
+  .chart-live { display:flex; align-items:center; gap:0.5rem; font-size:0.7rem; color:var(--muted); }
+  .live-dot { width:6px; height:6px; background:#22c55e; border-radius:50%; animation:blink 1.5s infinite; }
+  svg.chart { width:100%; height:160px; }
+  .market-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.5rem; }
+  .metric-box { background:rgba(255,255,255,0.03); border:1px solid var(--border); padding:1rem; border-radius:3px; text-align:center; }
+  .metric-val { font-family:'JetBrains Mono',monospace; font-size:1.1rem; color:var(--gold); }
+  .metric-lbl { font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:0.3rem; }
+  .metric-chg { font-size:0.75rem; margin-top:0.2rem; }
+  .pos { color:#22c55e; } .neg { color:#ef4444; }
+
+  .trading-content h2 { margin-bottom:1rem; }
+  .trading-content p { color:var(--muted); line-height:1.8; font-size:0.96rem; margin-bottom:1.5rem; }
+  .module-list { list-style:none; }
+  .module-list li { display:flex; align-items:flex-start; gap:0.8rem; padding:0.8rem 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.88rem; color:var(--muted); }
+  .module-list li::before { content:'▸'; color:var(--gold); flex-shrink:0; margin-top:1px; }
+
+  /* TESTIMONIALS / WHY US */
+  #why { background:rgba(255,255,255,0.015); }
+  .why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; margin-top:4rem; }
+  .why-card {
+    border:1px solid var(--border); padding:2rem;
+    border-radius:3px; transition:all 0.4s; cursor:none;
+  }
+  .why-card:hover { border-color:var(--gold); transform:translateY(-4px); background:rgba(201,168,76,0.04); }
+  .why-icon { font-size:2rem; margin-bottom:1rem; }
+  .why-card h3 { font-size:1rem; font-weight:600; margin-bottom:0.6rem; }
+  .why-card p { font-size:0.82rem; color:var(--muted); line-height:1.7; }
+
+  /* INDUSTRIES */
+  #industries .industry-strip {
+    display:flex; gap:0; margin-top:3rem; overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .industry {
+    flex:1; padding:2rem 1.5rem; text-align:center;
+    border-right:1px solid var(--border);
+    transition:all 0.3s; cursor:none;
+    background:var(--deep);
+  }
+  .industry:last-child { border-right:none; }
+  .industry:hover { background:rgba(201,168,76,0.05); }
+  .industry span { font-size:2rem; display:block; margin-bottom:0.7rem; }
+  .industry p { font-size:0.78rem; color:var(--muted); letter-spacing:0.05em; }
+
+  /* TOOLS */
+  #tools { background:var(--deep); }
+  .tools-marquee-wrap { overflow:hidden; margin-top:3rem; position:relative; }
+  .tools-marquee-wrap::before,
+  .tools-marquee-wrap::after {
+    content:''; position:absolute; top:0; bottom:0; width:100px; z-index:1;
+    pointer-events:none;
+  }
+  .tools-marquee-wrap::before { left:0; background:linear-gradient(to right,var(--deep),transparent); }
+  .tools-marquee-wrap::after { right:0; background:linear-gradient(to left,var(--deep),transparent); }
+  .tools-track { display:flex; gap:2.5rem; width:max-content; animation:scroll 25s linear infinite; }
+  .tools-track:hover { animation-play-state:paused; }
+  @keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .tool-pill {
+    background:var(--glass); border:1px solid var(--border);
+    padding:0.6rem 1.4rem; border-radius:20px; white-space:nowrap;
+    font-size:0.78rem; color:var(--muted); transition:all 0.3s;
+  }
+  .tool-pill:hover { border-color:var(--gold); color:var(--gold); }
+
+  /* CONTACT */
+  #contact { background:linear-gradient(135deg, rgba(10,15,30,0.98), rgba(6,11,24,1)); }
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; margin-top:4rem; }
+  .contact-info h3 { font-family:'Cormorant Garamond',serif; font-size:2rem; margin-bottom:1rem; }
+  .contact-info p { color:var(--muted); line-height:1.8; font-size:0.94rem; margin-bottom:2rem; }
+  .contact-details { display:flex; flex-direction:column; gap:1rem; }
+  .contact-item { display:flex; align-items:center; gap:1rem; }
+  .contact-icon { width:40px; height:40px; border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+  .contact-text { font-size:0.88rem; color:var(--muted); }
+  .contact-text a { color:var(--cream); text-decoration:none; }
+  .contact-text a:hover { color:var(--gold); }
+
+  .contact-form { display:flex; flex-direction:column; gap:1.2rem; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+  .form-group { display:flex; flex-direction:column; gap:0.5rem; }
+  .form-group label { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); }
+  .form-group input, .form-group textarea, .form-group select {
+    background:var(--glass); border:1px solid var(--border);
+    color:var(--cream); padding:0.85rem 1rem; border-radius:2px;
+    font-family:'DM Sans',sans-serif; font-size:0.88rem;
+    outline:none; transition:border-color 0.3s; cursor:none;
+    -webkit-appearance:none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color:var(--gold); }
+  .form-group textarea { resize:vertical; min-height:120px; }
+  .form-group select option { background:var(--navy); }
+  .form-submit { align-self:flex-start; }
+  .success-msg { display:none; color:#22c55e; font-size:0.85rem; margin-top:0.5rem; }
+
+  /* FOOTER */
+  footer {
+    background:var(--navy); border-top:1px solid var(--border);
+    padding:3rem 8%;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem;
+  }
+  .footer-logo { font-family:'Arial',serif; font-size:1.6rem; font-weight:700; }
+  .footer-logo span { display:block; font-size:0.55rem; letter-spacing:0.4em; font-family:'DM Sans',sans-serif; font-weight:300; color:var(--muted); margin-top:2px; text-transform:uppercase; }
+  .footer-links { display:flex; gap:2rem; flex-wrap:wrap; }
+  .footer-links a { color:var(--muted); text-decoration:none; font-size:0.8rem; letter-spacing:0.05em; transition:color 0.3s; }
+  .footer-links a:hover { color:var(--gold); }
+  .footer-copy { color:var(--muted); font-size:0.76rem; }
+
+  /* MOBILE NAV MENU */
+  .mobile-menu {
+    display:none; position:fixed; inset:0; z-index:999;
+    background:rgba(6,11,24,0.97); backdrop-filter:blur(20px);
+    flex-direction:column; justify-content:center; align-items:center; gap:2rem;
+  }
+  .mobile-menu.open { display:flex; }
+  .mobile-menu a { color:var(--cream); text-decoration:none; font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; transition:color 0.3s; }
+  .mobile-menu a:hover { color:var(--gold); }
+  .close-btn { position:absolute; top:20px; right:8%; background:none; border:none; color:var(--muted); font-size:1.5rem; cursor:none; }
+
+  /* ANIMATIONS */
+  .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+
+  /* FLOATING PARTICLES */
+  .particles { position:fixed; inset:0; pointer-events:none; z-index:0; }
+  .particle {
+    position:absolute; border-radius:50%;
+    background:rgba(201,168,76,0.15);
+    animation:float linear infinite;
+  }
+  @keyframes float {
+    0% { transform:translateY(100vh) rotate(0deg); opacity:0; }
+    10% { opacity:1; }
+    90% { opacity:1; }
+    100% { transform:translateY(-100px) rotate(720deg); opacity:0; }
+  }
+
+  /* COUNTER ANIMATION */
+  .count-up { display:inline; }
+
+  /* RESPONSIVE */
+  @media(max-width:1024px) {
+    .services-grid, .service-detail.active { grid-template-columns:repeat(2,1fr); }
+    .about-grid, .trading-grid, .contact-grid { grid-template-columns:1fr; gap:3rem; }
+    .why-grid { grid-template-columns:repeat(2,1fr); }
+    .process-steps { flex-direction:column; gap:2rem; }
+    .process-steps::before { display:none; }
+    .hero-stats { position:relative; bottom:auto; right:auto; margin-top:3rem; justify-content:flex-start; }
+    .about-visual { height:280px; }
+  }
+  @media(max-width:768px) {
+    .nav-links, .nav-cta-wrap { display:none; }
+    .hamburger { display:flex; }
+    section { padding:5rem 6%; }
+    .services-grid, .service-detail.active { grid-template-columns:1fr; }
+    .why-grid { grid-template-columns:1fr; }
+    .industry-strip { flex-direction:column; }
+    .industry { border-right:none; border-bottom:1px solid var(--border); }
+    h1 { font-size:2.6rem; }
+    .hero-orb { display:none; }
+    .form-row { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Floating Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo">KZENO<span>Business Innovation · NZ</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#trading">Trading</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#tools">Expertise</a></li>
+    <li><a href="#contact" class="nav-cta">Consult Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" id="closeMenu">✕</button>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#trading" class="mobile-link">Trading</a>
+  <a href="#why" class="mobile-link">Why Us</a>
+  <a href="#tools" class="mobile-link">Expertise</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div class="hero-tag">📍 Auckland, New Zealand · Est. 2025</div>
+    <h1>Digital <em>Transformation</em><br>Without Limits</h1>
+    <p class="hero-sub">Kzeno is a specialized IT consultancy delivering Business Analysis, Process Automation, Solution Architecture, and Market Intelligence - with 13+ years of global expertise across Banking, FinTech, and Enterprise technology.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact" class="btn-outline">Book a Consultation</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num"><span class="count-up" data-target="13">0</span>+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num"><span class="count-up" data-target="25">0</span>%</div>
+      <div class="stat-label">Process Efficiency Gain</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num"><span class="count-up" data-target="5">0</span></div>
+      <div class="stat-label">Countries Served</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$<span class="count-up" data-target="20">0</span>M+</div>
+      <div class="stat-label">Portfolio Managed</div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span></span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who We Are</div>
+  <h2>Global Expertise,<br><strong>Local Commitment</strong></h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>DMAANK is founded by Karthik Manoharan - a CBAP-certified Techno-Functional Business Analyst and AWS Solutions Architect with over 13 years of experience delivering transformational programs across Banking and FinTech ecosystems in India, Singapore, Dubai, Bahrain, and Saudi Arabia.</p>
+      <p>Now based in Auckland, New Zealand, DMAANK brings international-grade consulting to the local market - combining deep domain expertise in financial services with cutting-edge capabilities in AI/ML process automation, cloud architecture, and enterprise software delivery.</p>
+      <p>We don't just advise - we architect, implement, and validate solutions end-to-end, working as true partners in your transformation journey.</p>
+      <div class="about-badges">
+        <div class="badge">CBAP Certified</div>
+        <div class="badge">AWS Solutions Architect</div>
+        <div class="badge">ISTQB</div>
+        <div class="badge">Agile Scrum Master</div>
+        <div class="badge">Lean Six Sigma</div>
+        <div class="badge">TOGAF Aligned</div>
+        <div class="badge">IIBA-BABOK</div>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+      <div class="about-card">
+        <div class="card-metric">150+</div>
+        <div class="card-desc">Corporate clients served via enterprise digital banking platforms</div>
+        <div class="cert-row">
+          <span class="cert-chip">Banking</span>
+          <span class="cert-chip">FinTech</span>
+          <span class="cert-chip">Supply Chain Finance</span>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="card-metric">98%</div>
+        <div class="card-desc">Defect closure rate achieved before production release in UAT cycles</div>
+        <div class="cert-row">
+          <span class="cert-chip">UAT</span>
+          <span class="cert-chip">SIT</span>
+          <span class="cert-chip">Quality Assurance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">What We Deliver</div>
+      <h2>Our <strong>Service Lines</strong></h2>
+    </div>
+    <div class="services-tabs">
+      <button class="tab-btn active" data-tab="all">All Services</button>
+      <button class="tab-btn" data-tab="strategy">Strategy</button>
+      <button class="tab-btn" data-tab="tech">Technology</button>
+    </div>
+  </div>
+
+  <div class="services-grid" id="servicesGrid">
+    <div class="service-card reveal" data-category="strategy">
+      <span class="service-icon">🎯</span>
+      <h3>Business Consultation</h3>
+      <p>Strategic guidance using proven frameworks including IIBA-BABOK, TOGAF, Lean Six Sigma, and ITIL. We assess your current state, identify gaps, and design a roadmap that aligns technology investment with measurable business outcomes.</p>
+      <span class="service-tag">Strategy · BABOK · TOGAF →</span>
+    </div>
+    <div class="service-card reveal" data-category="strategy">
+      <span class="service-icon">📐</span>
+      <h3>Business Analysis</h3>
+      <p>End-to-end requirements engineering - from stakeholder elicitation and JAD sessions through UML modelling, BPMN process mapping, gap analysis, and functional specification authoring with full traceability.</p>
+      <span class="service-tag">Requirements · UML · BPMN →</span>
+    </div>
+    <div class="service-card reveal" data-category="tech">
+      <span class="service-icon">⚙️</span>
+      <h3>Process Automation</h3>
+      <p>AI/ML-powered automation leveraging Python, VBA macros, UiPath RPA, and Power Automate. We reduce manual effort, eliminate errors, and accelerate throughput - delivering measurable ROI from day one.</p>
+      <span class="service-tag">RPA · Python · AI/ML →</span>
+    </div>
+    <div class="service-card reveal" data-category="strategy">
+      <span class="service-icon">🔄</span>
+      <h3>Process Reengineering</h3>
+      <p>Using Lean Six Sigma and Value Stream Mapping, we identify bottlenecks, eliminate waste, and redesign workflows for maximum efficiency. Our clients have seen process improvements exceeding 35%.</p>
+      <span class="service-tag">Lean · Six Sigma · VSM →</span>
+    </div>
+    <div class="service-card reveal" data-category="tech">
+      <span class="service-icon">🏗️</span>
+      <h3>Solution Architecture</h3>
+      <p>Designing scalable, cloud-aligned architectures using Data-Driven Architecture (DDA), Event-Driven Architecture (EDA), Microservices, API integrations, and AWS cloud services for resilient enterprise systems.</p>
+      <span class="service-tag">AWS · Microservices · EDA →</span>
+    </div>
+    <div class="service-card reveal" data-category="tech">
+      <span class="service-icon">🧪</span>
+      <h3>Software Testing</h3>
+      <p>Comprehensive QA coverage across functional (ST/SIT/UAT) and non-functional testing domains. ISTQB-certified test design, automation frameworks, defect management, and release readiness validation.</p>
+      <span class="service-tag">ISTQB · Automation · UAT →</span>
+    </div>
+    <div class="service-card reveal" data-category="tech">
+      <span class="service-icon">🌐</span>
+      <h3>Web Application Development</h3>
+      <p>Custom web applications built with modern stacks (HTML/CSS/JS, Python, React principles). From business dashboards and client portals to internal tools - designed for performance, security, and usability.</p>
+      <span class="service-tag">Web · Python · API →</span>
+    </div>
+    <div class="service-card reveal" data-category="strategy">
+      <span class="service-icon">📊</span>
+      <h3>Project & Financial Analysis</h3>
+      <p>ROI-driven business cases, financial modelling, project governance, and portfolio management. We've supported initiatives exceeding USD 20M in combined value, applying Agile Scrum and structured delivery methodologies.</p>
+      <span class="service-tag">Agile · ROI · PMO →</span>
+    </div>
+    <div class="service-card reveal" data-category="strategy">
+      <span class="service-icon">🎓</span>
+      <h3>Corporate Training</h3>
+      <p>Hands-on workshops and corporate training programmes in Business Analysis, Agile/Scrum, Process Automation, BPMN, and Requirements Engineering - tailored for teams across skill levels.</p>
+      <span class="service-tag">Workshops · Agile · CBAP Prep →</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-label">How We Work</div>
+  <h2>Our <strong>Engagement Model</strong></h2>
+  <p class="section-intro">A structured, transparent process from discovery to delivery - designed to minimise risk and maximise value at every milestone.</p>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-dot">🔍<span class="step-num">1</span></div>
+      <h3>Discovery</h3>
+      <p>Stakeholder interviews, current-state analysis, business objectives mapping</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot">📋<span class="step-num">2</span></div>
+      <h3>Analysis</h3>
+      <p>Requirements elicitation, gap analysis, process mapping, and prioritisation</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot">🏛️<span class="step-num">3</span></div>
+      <h3>Design</h3>
+      <p>Solution architecture, data models, workflows, and functional specifications</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot">🚀<span class="step-num">4</span></div>
+      <h3>Delivery</h3>
+      <p>Agile sprint execution, implementation support, automation deployment</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot">✅<span class="step-num">5</span></div>
+      <h3>Validate</h3>
+      <p>UAT, defect management, performance benchmarking, go-live readiness</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot">📈<span class="step-num">6</span></div>
+      <h3>Optimise</h3>
+      <p>Post-launch monitoring, continuous improvement, ROI measurement</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRADING / MARKET -->
+<section id="trading">
+  <div class="trading-grid">
+    <div class="trading-visual reveal">
+      <div class="chart-header">
+        <span class="chart-title">NSE NIFTY50 · Options Flow</span>
+        <span class="chart-live"><span class="live-dot"></span>Live Training Simulation</span>
+      </div>
+      <svg class="chart" viewBox="0 0 400 160" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#00b4d8" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="chart-fill" d="M0,120 L30,100 L70,80 L100,90 L130,60 L160,75 L200,50 L230,65 L260,40 L300,55 L340,30 L370,45 L400,20 L400,160 L0,160 Z" fill="url(#chartGrad)"/>
+        <path class="chart-line" d="M0,120 L30,100 L70,80 L100,90 L130,60 L160,75 L200,50 L230,65 L260,40 L300,55 L340,30 L370,45 L400,20" fill="none" stroke="#00b4d8" stroke-width="2"/>
+        <circle cx="400" cy="20" r="4" fill="#00b4d8"/>
+        <path d="M0,115 L30,108 L70,95 L100,100 L130,80 L160,90 L200,70 L230,82 L260,65 L300,75 L340,58 L370,68 L400,48" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+      </svg>
+      <div class="market-metrics">
+        <div class="metric-box">
+          <div class="metric-val">22,450</div>
+          <div class="metric-lbl">NIFTY 50</div>
+          <div class="metric-chg pos">▲ 1.2%</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-val">148.30</div>
+          <div class="metric-lbl">India VIX</div>
+          <div class="metric-chg neg">▼ 0.8%</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-val">CE/PE</div>
+          <div class="metric-lbl">Options Flow</div>
+          <div class="metric-chg pos">Bullish</div>
+        </div>
+      </div>
+    </div>
+    <div class="trading-content reveal">
+      <div class="section-label">Market Intelligence</div>
+      <h2>NSE <strong>Stock Market</strong><br>Training Programme</h2>
+      <p>Structured training on NSE Index and Stock Options, Derivatives trading strategies, and risk management - designed for beginners to intermediate participants seeking financial independence and market literacy.</p>
+      <ul class="module-list">
+        <li>NSE Index Options: Understanding NIFTY & BANKNIFTY contracts, strikes, expiries, and Greeks</li>
+        <li>Derivatives Fundamentals: Futures vs Options, contract specifications, margin mechanics</li>
+        <li>Options Strategies: Straddles, Strangles, Iron Condors, Bull/Bear spreads for various market conditions</li>
+        <li>Technical Analysis: Chart patterns, RSI, MACD, volume analysis, and support-resistance identification</li>
+        <li>Risk Management: Position sizing, stop-loss placement, portfolio hedging techniques</li>
+        <li>Live Market Simulation: Paper trading with real-time data, trade journal, and performance review</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-label">Our Advantage</div>
+  <h2>Why <strong>DMAANK?</strong></h2>
+  <p class="section-intro">We combine practitioner-grade expertise with a commitment to measurable outcomes - not just recommendations.</p>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">🌍</div>
+      <h3>Global Track Record</h3>
+      <p>13+ years delivering enterprise programs across India, Singapore, UAE, Bahrain & Saudi Arabia. We bring international rigour to every NZ engagement.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🔬</div>
+      <h3>Techno-Functional Depth</h3>
+      <p>Rare blend of business domain knowledge and technical architecture capability - we bridge the gap that pure consultants and pure developers cannot.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">📉</div>
+      <h3>Outcome-Driven</h3>
+      <p>Every engagement is scoped against measurable results - efficiency gains, cost reductions, cycle time improvements, or risk mitigation metrics.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🤝</div>
+      <h3>Boutique & Responsive</h3>
+      <p>As a boutique firm, you work directly with the expert - not a junior analyst. Fast decisions, direct communication, zero corporate bureaucracy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="section-label">Domain Expertise</div>
+  <h2>Industries <strong>We Serve</strong></h2>
+  <div class="industry-strip reveal">
+    <div class="industry"><span>🏦</span><p>Banking & Finance</p></div>
+    <div class="industry"><span>💳</span><p>FinTech & Payments</p></div>
+    <div class="industry"><span>🔗</span><p>Supply Chain</p></div>
+    <div class="industry"><span>☁️</span><p>Cloud & SaaS</p></div>
+    <div class="industry"><span>📦</span><p>Enterprise Tech</p></div>
+    <div class="industry"><span>📈</span><p>Capital Markets</p></div>
+  </div>
+</section>
+
+<!-- TOOLS & EXPERTISE -->
+<section id="tools">
+  <div class="section-label">Technology Stack</div>
+  <h2>Tools & <strong>Expertise</strong></h2>
+  <p class="section-intro">A broad, cross-functional technology stack built from real delivery experience - not certifications alone.</p>
+  <div class="tools-marquee-wrap">
+    <div class="tools-track" id="toolsTrack">
+      <span class="tool-pill">JIRA</span>
+      <span class="tool-pill">Confluence</span>
+      <span class="tool-pill">Azure DevOps</span>
+      <span class="tool-pill">AWS Solutions Architect</span>
+      <span class="tool-pill">Power BI</span>
+      <span class="tool-pill">Python</span>
+      <span class="tool-pill">Oracle SQL</span>
+      <span class="tool-pill">UiPath RPA</span>
+      <span class="tool-pill">VBA Macros</span>
+      <span class="tool-pill">Postman API</span>
+      <span class="tool-pill">WSO2</span>
+      <span class="tool-pill">Lucidchart</span>
+      <span class="tool-pill">Microsoft Visio</span>
+      <span class="tool-pill">Power Query</span>
+      <span class="tool-pill">Git & GitHub</span>
+      <span class="tool-pill">HTML / CSS / JS</span>
+      <span class="tool-pill">BPMN / UML</span>
+      <span class="tool-pill">Lean Six Sigma</span>
+      <span class="tool-pill">TOGAF</span>
+      <span class="tool-pill">ITIL / COBIT</span>
+      <span class="tool-pill">ISO 27001</span>
+      <span class="tool-pill">SWIFT / SEPA / RTGS</span>
+      <!-- duplicate for seamless loop -->
+      <span class="tool-pill">JIRA</span>
+      <span class="tool-pill">Confluence</span>
+      <span class="tool-pill">Azure DevOps</span>
+      <span class="tool-pill">AWS Solutions Architect</span>
+      <span class="tool-pill">Power BI</span>
+      <span class="tool-pill">Python</span>
+      <span class="tool-pill">Oracle SQL</span>
+      <span class="tool-pill">UiPath RPA</span>
+      <span class="tool-pill">VBA Macros</span>
+      <span class="tool-pill">Postman API</span>
+      <span class="tool-pill">WSO2</span>
+      <span class="tool-pill">Lucidchart</span>
+      <span class="tool-pill">Microsoft Visio</span>
+      <span class="tool-pill">Power Query</span>
+      <span class="tool-pill">Git & GitHub</span>
+      <span class="tool-pill">HTML / CSS / JS</span>
+      <span class="tool-pill">BPMN / UML</span>
+      <span class="tool-pill">Lean Six Sigma</span>
+      <span class="tool-pill">TOGAF</span>
+      <span class="tool-pill">ITIL / COBIT</span>
+      <span class="tool-pill">ISO 27001</span>
+      <span class="tool-pill">SWIFT / SEPA / RTGS</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-label">Let's Connect</div>
+      <h3>Ready to Transform<br>Your Business?</h3>
+      <p>Whether you need strategic consultation, process automation, solution architecture, or market training - let's start with a conversation. No obligation, just clarity.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-text">Auckland, New Zealand<br><span style="color:var(--muted);font-size:0.78rem;">Serving NZ & Global Clients</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-text"><a href="mailto:karvjnz@gmail.com">karvjnz@gmail.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-text"><a href="tel:+64220264170">+64 22 026 4170</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🔗</div>
+          <div class="contact-text"><a href="https://linkedin.com/in/karvjnz" target="_blank">linkedin.com/in/karvjnz</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Aroha" id="firstName">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Williams" id="lastName">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@company.co.nz" id="email">
+      </div>
+      <div class="form-group">
+        <label>Service of Interest</label>
+        <select id="service">
+          <option value="">Select a service…</option>
+          <option>Business Consultation</option>
+          <option>Business Analysis</option>
+          <option>Process Automation</option>
+          <option>Process Reengineering</option>
+          <option>Solution Architecture</option>
+          <option>Software Testing</option>
+          <option>Web Application Development</option>
+          <option>Project & Financial Analysis</option>
+          <option>Corporate Training</option>
+          <option>Stock Market Training</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell us about your challenge</label>
+        <textarea placeholder="Describe your current situation and what you're looking to achieve…" id="message"></textarea>
+      </div>
+      <button class="btn-primary form-submit" onclick="handleSubmit()">Send Enquiry →</button>
+      <div class="success-msg" id="successMsg">✓ Thank you! We'll be in touch within 24 hours.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo" style="background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+      DMAANK
+      <span style="-webkit-text-fill-color:var(--muted);">Business Innovation · Auckland, NZ</span>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#trading">Trading</a>
+    <a href="#tools">Expertise</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 DMAANK. All rights reserved.</div>
+</footer>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  setTimeout(() => {
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  }, 60);
+});
+document.querySelectorAll('a,button,.service-card,.why-card,.industry').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.style.transform = 'translate(-50%,-50%) scale(1.8)');
+  el.addEventListener('mouseleave', () => ring.style.transform = 'translate(-50%,-50%) scale(1)');
+});
+
+// PARTICLES
+const pContainer = document.getElementById('particles');
+for(let i = 0; i < 18; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random() * 3 + 1;
+  p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${Math.random()*20+15}s;animation-delay:${Math.random()*15}s;opacity:${Math.random()*0.4+0.1}`;
+  pContainer.appendChild(p);
+}
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.style.background = window.scrollY > 50 ? 'rgba(6,11,24,0.97)' : 'rgba(6,11,24,0.85)';
+});
+
+// HAMBURGER
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.add('open');
+});
+document.getElementById('closeMenu').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.remove('open');
+});
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+});
+
+// REVEAL ON SCROLL
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if(entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// COUNT UP
+function countUp(el) {
+  const target = parseInt(el.dataset.target);
+  let current = 0;
+  const step = target / 60;
+  const timer = setInterval(() => {
+    current += step;
+    if(current >= target) { el.textContent = target; clearInterval(timer); }
+    else el.textContent = Math.floor(current);
+  }, 25);
+}
+const statObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.querySelectorAll('.count-up').forEach(countUp);
+      statObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+const heroSection = document.getElementById('hero');
+if(heroSection) statObs.observe(heroSection);
+
+// SERVICES TABS
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const tab = this.dataset.tab;
+    document.querySelectorAll('.service-card').forEach(card => {
+      if(tab === 'all' || card.dataset.category === tab) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// FORM SUBMIT
+function handleSubmit() {
+  const fields = ['firstName','lastName','email','service','message'];
+  let valid = true;
+  fields.forEach(id => { if(!document.getElementById(id).value) valid = false; });
+  if(!valid) { alert('Please fill in all fields before submitting.'); return; }
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = 'Sending…';
+  btn.style.opacity = '0.7';
+  setTimeout(() => {
+    btn.style.display = 'none';
+    const msg = document.getElementById('successMsg');
+    msg.style.display = 'block';
+    fields.forEach(id => { document.getElementById(id).value = ''; });
+  }, 1200);
+}
+
+// SMOOTH CHART ANIMATION (draw line on view)
+const chartObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      const line = entry.target.querySelector('.chart-line');
+      const fill = entry.target.querySelector('.chart-fill');
+      if(line) {
+        const len = line.getTotalLength ? line.getTotalLength() : 600;
+        line.style.strokeDasharray = len;
+        line.style.strokeDashoffset = len;
+        line.style.transition = 'stroke-dashoffset 1.5s ease';
+        requestAnimationFrame(() => { line.style.strokeDashoffset = '0'; });
+      }
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.trading-visual').forEach(el => chartObs.observe(el));
+</script>
+</body>
+</html>
