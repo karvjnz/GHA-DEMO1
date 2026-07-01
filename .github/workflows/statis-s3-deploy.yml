@@ -18,6 +18,6 @@ jobs:
         run: |
           aws s3 sync ./ s3://githubactions-bucket-demo/ \
           --exclude "*" \
-          --include "index2.html"
+          --include "index.html"
           
         
