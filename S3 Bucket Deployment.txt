@@ -1,0 +1,25 @@
+How to host a static website on AWS S3 and automate the deployment using GitHub Actions
+
+1. Setting up the AWS S3 Bucket
+===============================
+=> Create the Bucket: Navigate to the AWS S3 Console, create a new bucket, and uncheck 'Block all public access' to ensure the site is accessible over the internet.
+=> Enable Static Website Hosting: Go to the bucket's Properties tab, enable Static website hosting, and define the index document.
+=> Configure Permissions: Update the Bucket Policy under the Permissions tab to grant public read access to the bucket's contents.
+
+2. Setting up AWS Credentials for GitHub Actions
+=================================================
+=> Create an IAM User: In IAM, create a new user and attach the AmazonS3FullAccess policy (Note: for real-world projects, use least-privilege policies).
+=> Generate Access Keys: Go to the user's Security credentials and generate an Access Key ID and Secret Access Key.
+=> Store Secrets in GitHub: In your GitHub Repository, go to Settings > Secrets and variables > Actions and add the AWS Access Key ID and AWS Secret Access Key as repository secrets.
+
+3. Creating the GitHub Actions Workflow
+=======================================
+=> Create Workflow File: Inside your repository, create a file in .github/workflows/ (e.g., static-s3-deploy.yml).
+=> Define the Trigger: Set the trigger to run on a push event to the main branch.
+
+Define Jobs and Steps:
+=====================
+=> Checkout Action: Use actions/checkout@v3 to fetch the code from your repository.
+=> Configure AWS Credentials: Use an official action to configure your AWS credentials using the secrets you stored.
+=> Sync Files: Use the aws s3 sync command to upload the website files to your bucket.
+=> Deployment: Upon committing the workflow file, the pipeline automatically triggers, syncing your local index.html to the S3 bucket, making it available via the bucket's website endpoint.
