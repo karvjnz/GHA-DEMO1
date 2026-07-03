@@ -1,7 +1,7 @@
 name: Environment Variable Demo
 on: workflow_dispatch
 env:
-  APP_NEW: "Development"      # Environment Variable can be comfigured at "Workflow Level"
+  APP_ENV: "Development"      # Environment Variable can be comfigured at "Workflow Level"
 jobs:
   environment_variable_demo:
     runs-on: ubuntu-latest
