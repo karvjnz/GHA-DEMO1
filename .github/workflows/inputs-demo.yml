@@ -5,13 +5,19 @@ on:
       environment:
         description: Choose the Environment to Deploy
         required: true
-        default: Dev Environment
+        default: Dev Environment      # default input parameter value is given
+        type: choice                  # input option type given as choice (this is optional, if you want to give as choice, under options give the choices)
+        options:
+          - development
+          - test
+          - production
+      artifact_tag:
+        description: Choose the Git Tag    # second input parameter given for use to to provide manual input
+        
 jobs:
   inputs_demo:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy the application
-        run: echo "Deploying the Application to - ${{inputs.environment}}"
+        run: echo "Deploying the ${{inputs.artifact_tag}} Application to - ${{inputs.environment}}"
         
-  # Note: Environment Variable can be comfigured at 1. Workflow Level, or 2. at Job level or 3. at Steps level
-  # we have give three environment lable at 3 levels just to check which takes the preciding 
