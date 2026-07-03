@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Connecting to environment
+        env:
+          APP_ENV: "Production"      # Environment Variable can be comfigured at "Job Level"      
         run: echo "Application is Connecting to $APP_ENV"
         
   # Note: Environment Variable can be comfigured at 1. Workflow Level, or 2. at Job level or 3. at Steps level
+  # we have give three environment lable at 3 levels just to check which takes the preciding 
