@@ -1,0 +1,17 @@
+name: Environment Variable Demo
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Choose the Environment to Deploy
+        required: true
+        default: Dev Environment
+jobs:
+  inputs_demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the application
+        run: echo "Deploying the Application to - ${{inputs.environment}}"
+        
+  # Note: Environment Variable can be comfigured at 1. Workflow Level, or 2. at Job level or 3. at Steps level
+  # we have give three environment lable at 3 levels just to check which takes the preciding 
