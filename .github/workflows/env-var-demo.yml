@@ -4,6 +4,8 @@ env:
   APP_ENV: "Development"      # Environment Variable can be comfigured at "Workflow Level"
 jobs:
   environment_variable_demo:
+    env:
+      APP_ENV: "Test"      # Environment Variable can be comfigured at "Job Level"
     runs-on: ubuntu-latest
     steps:
       - name: Connecting to environment
