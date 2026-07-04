@@ -1,4 +1,4 @@
-name: If-condition & OR Condition - Demo - Trigger by PUSH
+name: If-condition & OR condition - Demo - Trigger by PUSH
 on:
   push:
     branches:
@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: Run based on the GitHub User
         if: github.actor == 'karvjnz' || github.actor == 'karvj27' 
-        run: echo "Triggered based on the GitHub Actor/User - {{github.actor}}"
+        run: echo "Triggered based on the GitHub Actor/User - ${{github.actor}}"
 
 # IF condition by default evaluate this statement as a condition, hence no need to use ${{}}
 # we use pipeline symbol || to represent the OR condition
