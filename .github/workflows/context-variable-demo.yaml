@@ -1,4 +1,4 @@
-name: Context Variable Demo
+name: Context Variable Demo - Push Event
 on: push
 jobs:
   context-variable-demo:
