@@ -1,19 +1,29 @@
-name: If-condition Demo - Trigger by PUSH
+name: If-condition & OR Condition - Demo - Trigger by PUSH
 on:
   push:
     branches:
       - main
       - development
 jobs:
-  check-condition:
+  check-if-condition:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Run if branch is main
-        if: ${{github.ref_name == 'main'}}
+        if: ${{github.ref_name == 'main'}}      # IF condition by default evaluate this statement as a condition, hence no need to use ${{}}
         run: echo "Running this step based on the if condition"
 
-      - name: Run this step with no condition
-        run: echo "Running this step without any condition"
 
+  check-OR-condition:
+    needs: check-if-condition      # this is optional, just to check this second job runs only after the if condition is met
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Run based on the GitHub User
+        if: github.actor == 'karvjnz' || github.actor == 'karvj27' 
+        run: echo "Triggered based on the GitHub Actor/User - {{github.actor}}"
+
+# IF condition by default evaluate this statement as a condition, hence no need to use ${{}}
+# we use pipeline symbol || to represent the OR condition
         
   
