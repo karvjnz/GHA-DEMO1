@@ -1,0 +1,19 @@
+name: If-condition Demo - Trigger by PUSH
+on:
+  push:
+    branches:
+      - main
+      - development
+jobs:
+  check-condition:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run if branch is main
+        if: ${{github.ref_name == 'main'}}
+        run: echo "Running this step based on the if condition"
+
+      - name: Run this step with no condition
+        run: echo "Running this step without any condition"
+
+        
+  
