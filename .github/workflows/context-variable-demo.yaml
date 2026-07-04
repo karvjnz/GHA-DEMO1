@@ -10,6 +10,8 @@ jobs:
           echo "The repository name is - ${{github.repository}}"
           echo "$GITHUB_SHA"
 
+
+# Printing Context & Environment Variable
 # echo "The repository name is - ${{github.repository}}" => This is a GitHub Context, so we use the context iside the {{}} curly brases
 # echo "$GITHUB_SHA" => This is an environment variable so we $ sign and followed the variable name
 
