@@ -1,4 +1,4 @@
-name: Outputs-Demo
+name: Outputs-Demo-PUSH
 on: push
 jobs:
   job1:
