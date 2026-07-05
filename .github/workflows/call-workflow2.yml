@@ -3,7 +3,7 @@ on: push
 
 jobs:
   call-greeting:
-    uses: ./.github/workflows/re-usable-workflow-inputs.yml
+    uses: ./.github/workflows/reusable-workflow-inputs.yml
     with:
       name: "Karthik Vijay"
    
