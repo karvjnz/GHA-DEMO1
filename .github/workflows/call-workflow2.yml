@@ -1,0 +1,10 @@
+name: Call Re-Usable Workflow with inputs - on Push
+on: push
+
+jobs:
+  call-greeting:
+    uses: ./.github/workflows/re-usable-workflow-inputs.yml
+    with:
+      name: "Karthik Vijay"
+   
+# we ar giving runner information here "run", because all runner information is alreafy there in the other yaml file which we are calling above.
