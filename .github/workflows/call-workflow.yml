@@ -1,0 +1,7 @@
+name: Call Re-Usable Workflow - on Push
+on: push
+
+jobs:
+  call-greeting:
+    uses: ./.github/workflows/re-usable-workflow.yml
+# we ar giving runner information here "run", because all runner information is alreafy there in the other yaml file which we are calling above.
